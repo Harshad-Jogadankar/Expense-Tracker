@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service  # Using service discovery via Eureka (load-balanced URI)
+          predicates:
+            - Path=/api/**  # Example path that should be forwarded to user-service
+          filters:
+            - StripPrefix=1  # Strip the first part of the path
+        - id: expense-service
+          uri: lb://expense-service  # Using service discovery via Eureka (load-balanced URI)
+          predicates:
+            - Path=/api1/**  # Example path for expense-service
+          filters:
+            - StripPrefix=1  # Strip the first two parts of the path
+
+        - id: report-service
+          uri: lb://report-service  # Using service discovery via Eureka (load-balanced URI)
+          predicates:
+            - Path=/api2/**  # Example path for expense-service
+          filters:
+            - StripPrefix=1
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
