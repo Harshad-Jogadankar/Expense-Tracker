@@ -32,7 +32,7 @@ This guide explains how to set up and run the project locally using IntelliJ IDE
 
 6. **Ensure Ports Are Free**  
    Before starting the applications, ensure that the following ports are free:  
-   - `8751`  
+   - `8761`  
    - `8081`  
    - `8082`  
    - `8083`  
